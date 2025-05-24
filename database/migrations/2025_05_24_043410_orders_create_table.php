@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('fio');
             $table->text('comment');
             $table->enum('status', ['new', 'complete',]);
+            $table->index('status');
             $table->timestamps();
         });
     }
