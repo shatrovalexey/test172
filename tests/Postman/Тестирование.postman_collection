@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "bc15a254-99a1-4082-9fbe-ce6bc65890b4",
+		"name": "Тестирование",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40039781",
+		"_collection_link": "https://local8-5977.postman.co/workspace/Local-Workspace~24bf8700-ad76-494d-8236-636eeeb9a5e4/collection/40039781-bc15a254-99a1-4082-9fbe-ce6bc65890b4?action=share&source=collection_link&creator=40039781"
+	},
+	"item": [
+		{
+			"name": "Категории",
+			"item": [
+				{
+					"name": "Список категорий",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/category",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Одна категория",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/category/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Изменить название категории",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/category/1?title=Test",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"1"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Test"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Товар",
+			"item": [
+				{
+					"name": "Создать товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product?title=Test&comment=dsfs fsdgdsgg&price=123.00",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Test"
+								},
+								{
+									"key": "comment",
+									"value": "dsfs fsdgdsgg"
+								},
+								{
+									"key": "price",
+									"value": "123.00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Информация о товаре",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Изменить информацию о товаре",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/1?title=Test2&comment=dsfdstertretbr teryhtjyj&price=43212.12",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"1"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Test2"
+								},
+								{
+									"key": "comment",
+									"value": "dsfdstertretbr teryhtjyj"
+								},
+								{
+									"key": "price",
+									"value": "43212.12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавить категорию к товару",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/2/category/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Убрать товар из категории",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/2/category/1/del",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"category",
+								"1",
+								"del"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/2/del",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"del"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Заявка",
+			"item": [
+				{
+					"name": "Создать",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order?fio=Алордловаыдлоов адложва&comment=РОЛОПаовы в",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order"
+							],
+							"query": [
+								{
+									"key": "fio",
+									"value": "Алордловаыдлоов адложва"
+								},
+								{
+									"key": "comment",
+									"value": "РОЛОПаовы в"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Изменить данные",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/1?fio=KHkjdfjlkdsf&comment=sdsf dfdf f ",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"1"
+							],
+							"query": [
+								{
+									"key": "fio",
+									"value": "KHkjdfjlkdsf"
+								},
+								{
+									"key": "comment",
+									"value": "sdsf dfdf f "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Информация",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Список со статусом",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/status/new",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"status",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Указать статус",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/1/status/complete",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"1",
+								"status",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавить товар",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/1/product/3/del",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"1",
+								"product",
+								"3",
+								"del"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Список заказов",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
