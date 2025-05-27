@@ -4,47 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Category as CategoryModel;
+use App\Models\{
+    Category as CategoryModel
+    , Order as OrderModel
+};
 
 class CategoryController extends Controller
 {
     /**
-    * Получить по ID
-    *
-    * @param int $id - ID
-    *
-    * @return ?CategoryModel
+    * @var array $_fields
     */
-    public function one(int $id): ?CategoryModel
-    {
-        return CategoryModel::find($id);
-    }
+    protected array $_fields = ['title',];
 
     /**
-    * Обновить по ID
-    *
-    * @param Request $request
-    * @param int $id - ID
-    *
-    * @return bool
+    * @var string $_model
     */
-    public function set(Request $request, int $id): bool
-    {
-        $obj = $this->one($id);
-        $obj->title = $request->input('title');
-
-        return !! $obj->save();
-    }
-
-    /**
-    * Весь список
-    *
-    * @param Request $request
-    *
-    * @return ?Collection
-    */
-    public function list(Request $request): ?Collection
-    {
-        return CategoryModel::get();
-    }
+    protected string $_model = CategoryModel::class;
 }

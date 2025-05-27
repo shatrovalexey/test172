@@ -13,6 +13,7 @@ class Product extends Model
     use HasFactory;
 
     protected $visible = ['id', 'title', 'price', 'comment',];
+    protected $fillable = ['title', 'price', 'comment',];
 
     public function orders()
     {

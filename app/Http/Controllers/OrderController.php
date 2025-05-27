@@ -11,18 +11,14 @@ use App\Models\Product as ProductModel;
 class OrderController extends Controller
 {
     /**
-    * @param Request $request
-    * @param ?OrderModel $obj
-    *
-    * @return ?OrderModel
+    * @var array $_fields
     */
-    public function _fill(Request $request, ?OrderModel $obj): ?OrderModel
-    {
-        $obj->fio = $request->input('fio');
-        $obj->comment = $request->input('comment');
+    protected array $_fields = ['fio', 'comment',];
 
-        return $obj;
-    }
+    /**
+    * @var string $_model
+    */
+    protected string $_model = OrderModel::class;
 
     /**
     * @param Request $request
@@ -33,13 +29,15 @@ class OrderController extends Controller
     */
     public function productAdd(Request $request, int $order_id, int $product_id): bool
     {
-        $item = new OrderItemModel();
-        $item->price = ProductModel::find($product_id)->price;
-        $item->quantity = $request->input('quantity');
-        $item->order_id = $order_id;
-        $item->product_id = $product_id;
+        if (!$item = ProductModel::find($product_id)) return false;
 
-        return !! $item->save();
+        return !! OrderItemModel::create([
+            'price' => $item->price
+            , 'quantity' => $request->input('quantity')
+            , 'order_id' => $order_id
+            , 'product_id' => $product_id
+            ,
+        ]);
     }
 
     /**
@@ -51,34 +49,20 @@ class OrderController extends Controller
     */
     public function productDel(Request $request, int $order_id, int $product_id): bool
     {
-        return !! OrderItemModel::where('product_id', $product_id)->where('order_id', $order_id)->delete();
-    }
-
-    /**
-    * @param Request $request
-    * @param int $id
-    *
-    * @return bool
-    */
-    public function del(Request $request, int $id): bool
-    {
-        return !! OrderModel::find($id)->delete();
+        return !! OrderItemModel::where('product_id', $product_id)->where('order_id', $order_id)?->delete();
     }
 
     /**
     * @param Request $request
     *
-    * @return array
+    * @return Collection
     */
-    public function list(Request $request): array
+    public function list(Request $request): Collection
     {
-        $results = [];
+        $results = parent::list($request);
 
-        foreach (OrderModel::get() as $order) {
+        foreach ($results as &$order)
             $order->items = OrderItemModel::where('order_id', $order->id)->get();
-
-            $results[] = $order;
-        }
 
         return $results;
     }
@@ -91,34 +75,10 @@ class OrderController extends Controller
     */
     public function one(int $id): ?OrderModel
     {
-        $obj = OrderModel::find($id);
-        $obj->products = OrderItemModel::where('order_id', $id)->get();
+        if ($obj = parent::one($id))
+            $obj->products = OrderItemModel::where('order_id', $id)->get();
 
         return $obj;
-    }
-
-    /**
-    * @param Request $request
-    * @param int $id
-    *
-    * @return bool
-    */
-    public function set(Request $request, int $id): bool
-    {
-        return !!$this->_fill($request, OrderModel::find($id))->save();
-    }
-
-    /**
-    * @param Request $request
-    *
-    * @return bool
-    */
-    public function add(Request $request): ?int
-    {
-        $obj = new OrderModel();
-        $this->_fill($request, $obj)->save();
-
-        return $obj->id;
     }
 
     /**

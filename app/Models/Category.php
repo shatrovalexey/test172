@@ -11,4 +11,5 @@ class Category extends Model
     use HasFactory;
 
     protected $visible = ['id', 'title',];
+    protected $fillable = ['title',];
 }

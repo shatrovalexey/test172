@@ -4,100 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Product as ProductModel;
-use App\Models\ProductCategory as ProductCategoryModel;
+use App\Models\{
+    Product as ProductModel
+    , ProductCategory as ProductCategoryModel
+};
 
 class ProductController extends Controller
 {
     /**
-    * Заполнить из Request
-    *
-    * @param Request $request
-    * @param ?ProductModel $obj
-    *
-    * @return ?ProductModel
+    * @var array $_fields
     */
-    protected function _fill(Request $request, ?ProductModel $obj): ?ProductModel
-    {
-        if (!$obj) return null;
-
-        $obj->title = $request->input('title');
-        $obj->comment = $request->input('comment');
-        $obj->price = $request->input('price');
-
-        return $obj;
-    }
+    protected array $_fields = ['title', 'comment', 'price',];
 
     /**
-    * Получить по ID
-    *
-    * @param Request $request
-    * @param int $id - ID
-    *
-    * @return ?ProductModel
+    * @var string $_model
     */
-    public function one(int $id): ?ProductModel
-    {
-        return ProductModel::find($id);
-    }
-
-    /**
-    * Обновить по ID
-    *
-    * @param Request $request
-    * @param int $id - ID
-    *
-    * @return bool
-    */
-    public function set(Request $request, int $id): bool
-    {
-        return !! $this->_fill($request, $this->one($id))->save();
-    }
-
-    /**
-    * Создать
-    *
-    * @param Request $request
-    *
-    * @return ?int
-    */
-    public function add(Request $request): ?int
-    {
-        $obj = new ProductModel();
-        $this->_fill($request, $obj)->save();
-
-        return $obj->id;
-    }
+    protected string $_model = ProductModel::class;
 
     /**
     * Весь список
     *
     * @param Request $request
     *
-    * @return ?ProductModel
+    * @return Collection
     */
-    public function list(Request $request): array
+    public function list(Request $request): Collection
     {
         $results = [];
 
-        foreach (ProductModel::get() as $product) {
+        foreach (parent->list() as $product) {
             $product->categories = $product->categories();
 
             $results[] = $product;
         }
 
         return $results;
-    }
-
-    /**
-    * @param Request $request
-    * @param int $id - ID
-    *
-    * @return bool
-    */
-    public function del(Request $request, int $id): bool
-    {
-        return !! ProductModel::find($id)->delete();
     }
 
     /**
