@@ -89,7 +89,8 @@ abstract class Controller
     public function add(Request $request): ?int
     {
         $obj = new $this->_model;
-        $this->_fill($request, $obj)?->save();
+
+        if (!$this->_fill($request, $obj)?->save()) return null;
 
         return $obj?->id;
     }
