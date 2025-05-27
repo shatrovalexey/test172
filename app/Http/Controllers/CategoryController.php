@@ -12,11 +12,6 @@ use App\Models\{
 class CategoryController extends Controller
 {
     /**
-    * @var array $_fields
-    */
-    protected array $_fields = ['title',];
-
-    /**
     * @var string $_model
     */
     protected string $_model = CategoryModel::class;

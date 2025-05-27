@@ -10,6 +10,6 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
-    protected $visible = ['id', 'title',];
-    protected $fillable = ['title',];
+    public $visible = ['id', 'title',];
+    public $fillable = ['title',];
 }

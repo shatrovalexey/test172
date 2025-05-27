@@ -12,8 +12,8 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
-    protected $visible = ['id', 'title', 'price', 'comment',];
-    protected $fillable = ['title', 'price', 'comment',];
+    public $visible = ['id', 'title', 'price', 'comment',];
+    public $fillable = ['title', 'price', 'comment',];
 
     public function orders()
     {

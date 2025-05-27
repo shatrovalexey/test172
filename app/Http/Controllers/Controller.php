@@ -27,7 +27,7 @@ abstract class Controller
     */
     protected function _fill(Request $request, ?Model $obj): ?Model
     {
-        return $obj?->fill($request->only($this->_fields));
+        return $obj?->fill($request->only((new $this->_model)->fillable));
     }
 
     /**

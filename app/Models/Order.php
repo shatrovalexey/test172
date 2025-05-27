@@ -11,7 +11,7 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
-    protected $fillable = ['fio', 'comment', 'status',];
+    public $fillable = ['fio', 'comment', 'status',];
 
     public function items()
     {

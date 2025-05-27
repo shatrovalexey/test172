@@ -12,11 +12,6 @@ use App\Models\{
 class ProductController extends Controller
 {
     /**
-    * @var array $_fields
-    */
-    protected array $_fields = ['title', 'comment', 'price',];
-
-    /**
     * @var string $_model
     */
     protected string $_model = ProductModel::class;

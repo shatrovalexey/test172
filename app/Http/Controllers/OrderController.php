@@ -11,11 +11,6 @@ use App\Models\Product as ProductModel;
 class OrderController extends Controller
 {
     /**
-    * @var array $_fields
-    */
-    protected array $_fields = ['fio', 'comment',];
-
-    /**
     * @var string $_model
     */
     protected string $_model = OrderModel::class;
