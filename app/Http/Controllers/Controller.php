@@ -59,8 +59,6 @@ abstract class Controller
     /**
     * Весь список
     *
-    * @param Request $request
-    *
     * @return ?Collection
     */
     public function list(Request $request): Collection

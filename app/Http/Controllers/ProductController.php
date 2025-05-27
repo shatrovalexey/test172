@@ -25,13 +25,10 @@ class ProductController extends Controller
     */
     public function list(Request $request): Collection
     {
-        $results = [];
+        $results = parent::list($request);
 
-        foreach (parent->list() as $product) {
+        foreach ($results as &$product)
             $product->categories = $product->categories();
-
-            $results[] = $product;
-        }
 
         return $results;
     }
